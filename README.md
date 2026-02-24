@@ -24,4 +24,4 @@ after you've made changes - just reload the page. The server **can**
 occasionally crash, so check your terminal from time to time and run `serve`
 again if needed.
 
-The AP World doesn't work most the time and needs to be made instead of using manual.
+The AP World doesn't work most the time and needs to be made instead of using Manual.
