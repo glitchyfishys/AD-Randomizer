@@ -16,20 +16,20 @@ jobs:
     name: Deploy 🚀
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           lfs: true
       - uses: actions/setup-node@v4
         with:
-          node-version: "14"
-          cache: "npm"
+          node-version: '20'
+          cache-dependency-path: 'package-lock.json'
+          cache: 'npm'
       - run: npm ci
       - run: npm run build:release
       - uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.GH_PUBLISH_TOKEN }}
-          repository-name: IvarK/AntimatterDimensions
+          repository-name: glitchyfishys/AD-V
           branch: master
           folder: dist
           single-commit: true
-
