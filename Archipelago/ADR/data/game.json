@@ -1,0 +1,7 @@
+{
+    "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.game.schema.json",
+    "game": "Antimatter Dimensions Randomizer",
+    "creator": "Glitchyfishys",
+    "filler_item_name": "ADR Filler",
+    "death_link": false
+}

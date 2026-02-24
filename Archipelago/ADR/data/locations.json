@@ -1,0 +1,203 @@
+{
+	"$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.locations.schema.json",
+    "data": [
+        {
+            "name": "Pre-Infinity-1",
+            "region": "AntimatterDimensions"
+        },
+        {
+            "name": "Pre-Infinity-2",
+            "region": "FirstDimensionboost"
+        },
+        {
+            "name": "Pre-Infinity-3",
+            "region": "FirstGalaxy"
+        },
+        {
+            "name": "Post-Infinity-1",
+            "region": "FirstInfinity"
+        },
+        {
+            "name": "Post-Infinity-2",
+            "region": "FirstInfinity"
+        },
+        {
+            "name": "Post-Infinity-3",
+            "region": "FirstInfinity"
+        },
+        {
+            "name": "Post-Break-1",
+            "region": "BreakInfinity"
+        },
+        {
+            "name": "Post-Break-2",
+            "region": "BreakInfinity"
+        },
+        {
+            "name": "Post-Break-3",
+            "region": "BreakInfinity"
+        },
+        {
+            "name": "Post-Break-4",
+            "region": "BreakInfinity"
+        },
+        {
+            "name": "Replicanti-1",
+            "region": "UnlockReplicanti"
+        },
+        {
+            "name": "Replicanti-2",
+            "region": "UnlockReplicanti"
+        },
+        {
+            "name": "Replicanti-3",
+            "region": "UnlockReplicanti"
+        },
+        {
+            "name": "Eternity-1",
+            "region": "FirstEternity"
+        },
+        {
+            "name": "Eternity-2",
+            "region": "FirstEternity"
+        },
+        {
+            "name": "Eternity-3",
+            "region": "FirstEternity"
+        },
+        {
+            "name": "Time Study 181-1",
+            "region": "TimeStudy181"
+        },
+        {
+            "name": "Time Study 181-2",
+            "region": "TimeStudy181"
+        },
+        {
+            "name": "Time Study 181-3",
+            "region": "TimeStudy181"
+        },
+        {
+            "name": "Dilation-1",
+            "region": "FirstDilation"
+        },
+        {
+            "name": "Dilation-2",
+            "region": "FirstDilation"
+        },
+        {
+            "name": "Dilation-3",
+            "region": "FirstDilation"
+        },
+        {
+            "name": "Reality-1",
+            "region": "FirstReality"
+        },
+        {
+            "name": "Reality-2",
+            "region": "FirstReality"
+        },
+        {
+            "name": "Reality-3",
+            "region": "FirstReality"
+        },
+        {
+            "name": "Teresa-1",
+            "region": "CelestialTeresa"
+        },
+        {
+            "name": "Effarig-1",
+            "region": "CelestialEffarig"
+        },
+        {
+            "name": "Nameless-1",
+            "region": "CelestialNameless"
+        },
+        {
+            "name": "V-1",
+            "region": "CelestialV"
+        },
+        {
+            "name": "V-2",
+            "region": "CelestialV"
+        },
+        {
+            "name": "V-3",
+            "region": "CelestialV"
+        },
+        {
+            "name": "Ra-1",
+            "region": "CelestialRa"
+        },
+        {
+            "name": "Ra-2",
+            "region": "CelestialRa"
+        },
+        {
+            "name": "Ra-3",
+            "region": "CelestialRa"
+        },
+        {
+            "name": "Ra-4",
+            "region": "CelestialRa"
+        },
+        {
+            "name": "Imaginary-1",
+            "region": "CelestialRa"
+        },
+        {
+            "name": "Imaginary-2",
+            "region": "CelestialRa"
+        },
+        {
+            "name": "Laitela-1",
+            "region": "CelestialLaitela"
+        },
+        {
+            "name": "Laitela-2",
+            "region": "CelestialLaitela"
+        },
+        {
+            "name": "Laitela-3",
+            "region": "CelestialLaitela"
+        },
+        {
+            "name": "Pelle-1",
+            "region": "CelestialPelle"
+        },
+        {
+            "name": "Pelle-2",
+            "region": "CelestialPelle"
+        },
+        {
+            "name": "Pelle-3",
+            "region": "CelestialPelle"
+        },
+        {
+            "name": "Pelle-4",
+            "region": "CelestialPelle"
+        },
+        {
+            "name": "Pelle-5",
+            "region": "CelestialPelle"
+        },
+        {
+            "name": "Pelle-6",
+            "region": "CelestialPelle"
+        },
+        {
+            "name": "Pelle-7",
+            "region": "CelestialPelle"
+        },
+        {
+            "name": "Pelle-8",
+            "region": "CelestialPelle"
+        },
+        {
+            "name": "Finish Pelle!",
+            "region": "CelestialPelle",
+            "victory": true
+        }
+    ]
+}
+

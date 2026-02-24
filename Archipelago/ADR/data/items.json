@@ -1,0 +1,119 @@
+{
+    "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.items.schema.json",
+    "data": [
+        {
+            "name": "Antimatter Dimension Power",
+            "progression": true,
+            "early": true,
+            "sort-key": "row-0-1"
+        },
+        {
+            "name": "Antimatter Dimension Power",
+            "progression": true,
+            "early": true,
+            "sort-key": "row-0-1"
+        },
+        {
+            "name": "Antimatter Dimension Power",
+            "progression": true,
+            "early": true,
+            "sort-key": "row-0-1"
+        },
+        {
+            "name": "Infinity Point Power",
+            "category": [ "IP" ],
+            "count": 3,
+            "progression": true,
+            "sort-key": "row-0-2"
+        },
+        {
+            "name": "Infinity Dimension Power",
+            "category": [ "ID" ],
+            "count": 3,
+            "progression": true,
+            "sort-key": "row-0-3"
+        },
+        {
+            "name": "Replicanti Speed",
+            "category": [ "Replicanti" ],
+            "count": 3,
+            "progression": true,
+            "sort-key": "row-0-4"
+        },
+        {
+            "name": "Eternity Point Power",
+            "category": [ "EP" ],
+            "count": 3,
+            "progression": true,
+            "sort-key": "row-0-5"
+        },
+        {
+            "name": "Time Dimension Power",
+            "category": [ "TD" ],
+            "count": 3,
+            "progression": true,
+            "sort-key": "row-0-6"
+        },
+        {
+            "name": "Tachyon Particles Muliplier",
+            "category": [ "TP" ],
+            "count": 3,
+            "progression": true,
+            "sort-key": "row-0-7"
+        },
+        {
+            "name": "Reality Machines Power",
+            "category": [ "RM" ],
+            "count": 3,
+            "progression": true,
+            "sort-key": "row-0-8"
+        },
+        {
+            "name": "Relic Shard Muliplier",
+            "category": [ "RS" ],
+            "sort-key": "row-1-1"
+        },
+        {
+            "name": "Ra Memory Muliplier",
+            "category": [ "Memory" ],
+            "count": 5,
+            "progression": true,
+            "sort-key": "row-1-2"
+        },
+        {
+            "name": "Dark Matter Dimension Multiplier",
+            "category": [ "DMD" ],
+            "count": 4,
+            "progression": true,
+            "sort-key": "row-1-3"
+        },
+        {
+            "name": "Remanant Multiplier",
+            "category": [ "Rem" ],
+            "count": 5,
+            "progression": true,
+            "sort-key": "row-1-4"
+        },
+        {
+            "name": "Reality Shard Multiplier",
+            "category": [ "Shard" ],
+            "count": 5,
+            "progression": true,
+            "sort-key": "row-1-5"
+        },
+        {
+            "name": "Dilation",
+            "category": [ "Trap" ],
+            "count": 3,
+            "trap": true,
+            "sort-key": "row-1-6"
+        },
+        {
+            "name": "Pause",
+            "category": [ "Trap" ],
+            "count": 3,
+            "trap": true,
+            "sort-key": "row-1-7"
+        }
+    ]
+}

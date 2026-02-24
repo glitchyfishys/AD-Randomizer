@@ -1,0 +1,100 @@
+{
+    "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.regions.schema.json",
+    "_Comment": "Antimatter Dimensions is in the script itself",
+    "FirstDimensionboost": {
+        "category": ["Pre-Infinity"],
+        "connects_to": ["FirstGalaxy"],
+        "requires": "|Antimatter Dimension Power:1|"
+    },
+    "FirstGalaxy": {
+        "category": ["Pre-Infinity"],
+        "connects_to": ["FirstInfinity"],
+        "requires": "|Antimatter Dimension Power:2|"
+    },
+    "FirstInfinity": {
+        "category": ["Post-Infinity"],
+        "connects_to": ["BreakInfinity"],
+        "requires": "|Antimatter Dimension Power:3|"
+    },
+    "BreakInfinity": {
+        "category": ["Post-Break"],
+        "connects_to": ["UnlockReplicanti"],
+        "requires": "|Infinity Point Power:3|"
+    },
+    "UnlockReplicanti": {
+        "category": ["Replicanti"],
+        "connects_to": ["FirstEternity"],
+        "requires": "|Infinity Dimension Power:3|"
+    },
+    "FirstEternity": {
+        "category": ["Eternity"],
+        "connects_to": ["TimeStudy181"],
+        "requires": "|Replicanti Speed:3|"
+    },
+    "TimeStudy181": {
+        "category": ["Eternity"],
+        "connects_to": ["FirstDilation"],
+        "requires": "|Time Dimension Power:2| and |Eternity Point Power:2|"
+    },
+    "FirstDilation": {
+        "category": ["Eternity"],
+        "connects_to": ["FirstReality"],
+        "requires": "|Time Dimension Power:3| and |Eternity Point Power:3|"
+    },
+    "FirstReality": {
+        "category": ["Reality"],
+        "connects_to": ["CelestialTeresa"],
+        "requires": "|Tachyon Particles Muliplier:3|"
+    },
+    "CelestialTeresa": {
+        "category": ["Celestial"],
+        "connects_to": ["CelestialEffarig"],
+        "requires": "|Reality Machines Power:1|"
+    },
+    "CelestialEffarig": {
+        "category": ["Celestial"],
+        "connects_to": ["CelestialNameless"]
+    },
+    "CelestialNameless": {
+        "category": ["Celestial"],
+        "connects_to": ["CelestialV"]
+    },
+    "CelestialV": {
+        "category": ["Celestial"],
+        "connects_to": ["CelestialRa"],
+        "requires": "|Reality Machines Power:3|"
+    },
+    "CelestialRa": {
+        "category": ["Celestial"],
+        "connects_to": ["CelestialLaitela"]
+    },
+    "CelestialLaitela": {
+        "category": ["Celestial"],
+        "connects_to": ["CelestialPelle"],
+        "requires": "|Ra Memory Muliplier:4|"
+    },
+    "CelestialPelle": {
+        "category": ["Celestial"],
+        "connects_to": ["PelleInfinity"],
+        "requires": "|Dark Matter Dimension Multiplier:4|"
+    },
+    "PelleInfinity": {
+        "category": ["Celestial", "Pelle"],
+        "connects_to": ["PelleEternity"],
+        "requires": "|Remanant Multiplier:3|"
+    },
+    "PelleEternity": {
+        "category": ["Celestial", "Pelle"],
+        "connects_to": ["PelleDilation"],
+        "requires": "|Remanant Multiplier:5| and |Reality Shard Multiplier:3|"
+    },
+    "PelleDilation": {
+        "category": ["Celestial", "Pelle"],
+        "connects_to": ["FinishPelle!"],
+        "requires": "|Reality Shard Multiplier:5|"
+    },
+    "FinishPelle!": {
+        "victory": true,
+        "category": ["Celestial", "Pelle"]
+    }
+}
