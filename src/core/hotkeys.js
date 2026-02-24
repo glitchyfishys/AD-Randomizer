@@ -318,10 +318,10 @@ if (DEV) {
   console.warn("Don't Cheat Mid Run");
 }
 
-GameKeyboard.bind("mod+shift+c", () => {SecretAchievement(23).unlock(); return DEV;});
-GameKeyboard.bind("mod+shift+i", () => {SecretAchievement(23).unlock(); return DEV;});
-GameKeyboard.bind("mod+shift+j", () => {SecretAchievement(23).unlock(); return DEV;});
-GameKeyboard.bind("f12", () => {SecretAchievement(23).unlock(); return DEV;});
+GameKeyboard.bind("mod+shift+c", () => {SecretAchievement(23).unlock(); return !DEV;});
+GameKeyboard.bind("mod+shift+i", () => {SecretAchievement(23).unlock(); return !DEV;});
+GameKeyboard.bind("mod+shift+j", () => {SecretAchievement(23).unlock(); return !DEV;});
+GameKeyboard.bind("f12", () => {SecretAchievement(23).unlock(); return !DEV;});
 
 for (const hotkey of shortcuts) {
   GameKeyboard[hotkey.type](hotkey.keys.join("+"), hotkey.function);
