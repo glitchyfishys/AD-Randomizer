@@ -86,6 +86,7 @@ export const Pelle = {
     player.reality.automator.state.forceRestart = false;
     if (BlackHoles.arePaused) BlackHoles.togglePause();
     player.celestials.pelle.doomed = true;
+    forceUIUpdate = !forceUIUpdate;
     Pelle.armageddon(false);
     respecTimeStudies(true);
     Currency.infinityPoints.reset();

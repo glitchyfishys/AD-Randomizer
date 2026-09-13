@@ -18,6 +18,7 @@ export default {
       room: {},
       upgrades: [],
       localUpgrades: 0,
+      totalItems: 52,
     };
   },
   methods: {
@@ -46,6 +47,7 @@ export default {
       this.connected = Archipelago.Client.socket;
       this.room = Archipelago.Client.room;
       this.items = Archipelago.Items.map(x => (x.name + " from " + x.sender.name + " at " + x.locationName));
+      if (ArchipelagoUpgrades.length > 0 && ArchipelagoUpgrades.all.length > 0) this.totalItems = ArchipelagoUpgrades.all.length;
 
       if (ArchipelagoUpgrades.all) this.upgrades =  ArchipelagoUpgrades.all;
     },
@@ -55,7 +57,8 @@ export default {
 
 <template>
   <div style="font-size: 2rem; margin-bottom: 5rem;">
-    You are have various Adjustments <br>
+    You are have various Adjustments and increase over progression <br>
+    If you are in an Archipelago they are initially nerfed to compensate<br>
     [Progress Buffs] <br><br>
     {{formatX(buffs.AMMul,2,2)}} and {{formatPow(buffs.AD,2,2)}} Antimatter Dimensions. <br>
     {{formatPow(buffs.ID,2,2)}} Infinity Dimensions. <br>
@@ -73,7 +76,7 @@ export default {
     {{formatX(buffs.RealityShards,2,2) }} Reality Shards. <br>
     {{formatX(10,2,2) }} Galaxy Generator. <br><br>
 
-    [Archipalego Info] <br><br>
+    [Archipelago Info] <br><br>
 
     <PrimaryButton
     class="o-primary-btn--option_font-x-large"
@@ -85,31 +88,34 @@ export default {
     </PrimaryButton> <br><br>
 
     {{ connected.connected ? `Connected on ${connected.url}` : "Not Connected"}} <br>
-    You have collected {{room.checkedLocations.length}} of {{room.allLocations.length}} Items <br><br>
+    <div v-if="connected.connected">
 
-    [Collected Archipalego Items] <br><br>
+      You have collected {{room.checkedLocations.length}} of {{room.allLocations.length}} Items <br><br>
 
-    <div
-    style="border: 3px var(--color-archipelago) solid;"
-    >
-      <div v-for="item in items"
-      style="margin: 1rem; border: 3px var(--color-archipelago) solid; width: 20%; display: inline-table;"
+      [Collected Archipelago Items] <br><br>
+
+      <div
+      style="border: 3px var(--color-archipelago) solid;"
       >
-          {{ item }}
-      </div>
-    </div><br><br>
+        <div v-for="item in items"
+        style="margin: 1rem; border: 3px var(--color-archipelago) solid; width: 20%; display: inline-table;"
+        >
+            {{ item }}
+        </div>
+      </div><br><br>
 
-    [Your Archipalego Unlocks]<br><br>
-    You have collected {{localUpgrades}} of {{50}} Items <br><br>
+      [Your Archipelago Unlocks]<br><br>
+      You have collected {{localUpgrades}} of {{totalItems}} Items <br><br>
 
-    <div
-    style="border: 3px var(--color-archipelago) solid;"
-    >
-      <div v-for="ug in upgrades"
-      style="margin: 1rem; display: inline-table; width: 20%; border: 3px var(--color-archipelago) solid;"
-      :style="ug.isBought ? 'color:green' : 'color:red'"
+      <div
+      style="border: 3px var(--color-archipelago) solid;"
       >
-        {{ ug.description }}
+        <div v-for="ug in upgrades"
+        style="margin: 1rem; display: inline-table; width: 20%; border: 3px var(--color-archipelago) solid;"
+        :style="ug.isBought ? 'color:green' : 'color:red'"
+        >
+          {{ ug.description }}
+        </div>
       </div>
     </div>
 

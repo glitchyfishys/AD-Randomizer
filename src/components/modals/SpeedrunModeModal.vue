@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       onInfoPage: true,
-      name: "ADR Player",
+      name: "ADRA Player",
       ArchURL: "wss://archipelago.gg:38281",
       pwd: "",
     };
@@ -24,10 +24,10 @@ export default {
       Archipelago.Client.login(this.ArchURL, this.name, "Antimatter Dimensions Randomizer", {
         password: this.pwd
       }).then(() => {
-        GameUI.notify.success("Connected to the Archipelago server!", 5000);
-        player.archipelago.lastURL = this.ArchURL;
         player.archipelago.lastName = this.name;
         player.archipelago.lastPassword = this.pwd;
+        player.archipelago.lastURL = this.ArchURL;
+        GameUI.notify.success("Connected to the Archipelago server!", 5000);
       })
       .catch((er) => {
         console.error(er);
@@ -111,8 +111,8 @@ export default {
       <br>
       <br>
       <div class="c-modal-hard-reset-danger">
-        Joining a Archipelago will reset your save to the beginning of the game.<br>
-        If you have collected an Item the game will not reset. <br>
+        Joining an Archipelago will reset your save to the beginning of the game if this is not an Archipelago save.<br>
+        The game will reload if you have started a non Archipelago run. <br>
         Make sure to join from the same save to prevent unbalanced gameplay.
       </div>
     </div>

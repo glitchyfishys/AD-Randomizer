@@ -109,16 +109,16 @@ export function Randomize() {
     
 
     const Ids = NormalTimeStudyState.all.map(x => x.id);
-    const IDsUpper = Ids.filter(x => x < 70).shuffle(Rando);
+    const IDsUpper = Ids.filter(x => x < 70 && x != 52).shuffle(Rando);
     const IDsDimSplit = Ids.filter(x => x > 70 && x < 110).shuffle(Rando);
-    // const IDsPaceSplit = Ids.filter(x => x > 120 && x < 150).shuffle(Rando);
+    // const IDsPaceSplit = Ids.filter(x => x > 120 && x < 150).shuffle(Rando); // kinda unbalanced
     const IDsLower = Ids.filter(x => x > 190 && x < 220).shuffle(Rando);
     const IDsDL1 = Ids.filter(x => x > 220 && x < 230).shuffle(Rando);
     const IDsDL2 = Ids.filter(x => x > 230 && x < 240).shuffle(Rando);
     
-    const upper = NormalTimeStudyState.all.filter(x => x.id < 70).shuffle(Rando);
+    const upper = NormalTimeStudyState.all.filter(x => x.id < 70 && x.id != 52).shuffle(Rando);
     const DimSplit = NormalTimeStudyState.all.filter(x => x.id > 70 && x.id < 110).shuffle(Rando);
-    // const PaceSplit = NormalTimeStudyState.all.filter(x => x.id > 120 && x.id < 150).shuffle(Rando);
+    // const PaceSplit = NormalTimeStudyState.all.filter(x => x.id > 120 && x.id < 150).shuffle(Rando); // kinda unbalanced
     const lower = NormalTimeStudyState.all.filter(x => x.id > 190 && x.id < 220).shuffle(Rando);
     const DLSplit1 = NormalTimeStudyState.all.filter(x => x.id > 220 && x.id < 230).shuffle(Rando);
     const DLSplit2 = NormalTimeStudyState.all.filter(x => x.id > 230 && x.id < 240).shuffle(Rando);

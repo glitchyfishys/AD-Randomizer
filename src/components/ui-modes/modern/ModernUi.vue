@@ -42,7 +42,7 @@ export default {
       this.hasReality = PlayerProgress.realityUnlocked();
       // This only exists to force a key-swap after pressing the button to start a new game; the news ticker can break
       // if it isn't redrawn
-      this.newGameKey = Pelle.isDoomed;
+      this.newGameKey = forceUIUpdate;
     },
     handleClick() {
       if (PlayerProgress.infinityUnlocked()) manualBigCrunchResetRequest();

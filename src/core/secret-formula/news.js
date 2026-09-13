@@ -2594,6 +2594,11 @@ export const news = [
       fast. Update, just 5 hours.`
   },
   {
+    id: "a391",
+    text:
+      `If the mod is called "Antimatter Dimensions Randomize and Archipelago. Does that mean this is AD:RA?`
+  },
+  {
     id: "l1",
     text: "You just made your 1,000,000,000,000,000th antimatter. This one tastes like chicken.",
     get unlocked() { return Currency.antimatter.exponent === 15; }

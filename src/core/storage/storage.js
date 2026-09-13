@@ -497,8 +497,6 @@ export const GameStorage = {
       setTimeout(() => Modal.catchup.show(rawDiff), 5000);
     }
 
-    Randomize(); // reset for new seed
-
   },
   postLoadStuff() {
     // This is called from simulateTime, if that's called; otherwise, it gets called

@@ -2,6 +2,7 @@ import * as ADNotations from "@antimatter-dimensions/notations";
 
 export const NG = {
   startNewGame() {
+    if (player.archipelago.isArch) Archipelago.Client.socket.disconnect();
     GameEnd.creditsClosed = false;
     GameEnd.creditsEverClosed = false;
     player.isGameEnd = false;
@@ -36,7 +37,6 @@ export const NG = {
     player.records.fullGameCompletions++;
     GlyphAppearanceHandler.unlockSet();
     this.restartWithCarryover();
-    Archipelago.Client.socket.disconnect();
     // The ending animation ends at 12.5, although the value continues to increase after that. We set it to a bit above
     // 12.5 when we start the rollback animation to hide some of the unavoidable lag from all the reset functions
     GameEnd.removeAdditionalEnd = true;
@@ -48,6 +48,7 @@ export const NG = {
   // Reset the game, but carry over some post-completion stats. We also call this when starting a speedrun, so make sure
   // any stats which are updated due to completion happen in startNewGame() instead of in here
   restartWithCarryover() {
+    if (player.archipelago.isArch) Archipelago.Client.socket.disconnect();
     const backUpOptions = JSON.stringify(player.options);
     // This can't be JSONed as it contains sets
     const secretUnlocks = player.secretUnlocks;

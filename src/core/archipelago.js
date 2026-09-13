@@ -7,7 +7,7 @@ export class Archipelago { // make the game run faster so others don't need to w
   static Module = Arch; // Module for Archipelago Randomizer
 
   static get Progress() {
-    
+
 
     if (player.archipelago.isArch) {
       if (Pelle.isUnlocked) return 5;
@@ -63,12 +63,12 @@ export class Archipelago { // make the game run faster so others don't need to w
   static get infinityPointsMul() {
     if (!PlayerProgress.hasBroken()) return player.archipelago.isArch ? 3 : 2;
     else if (player.IPMultPurchases < 7) return player.archipelago.isArch ? 25 : 10;
-    else return player.archipelago.isArch ? 1000 :100;
+    else return player.archipelago.isArch ? 1000 : 100;
   }
 
   static get replicanti() {
     if (Pelle.isUnlocked) return player.archipelago.isArch ? 10 : 5;
-    if (player.archipelago.isArch) return Math.max(1.5 * (1.33 ** Archipelago.Boosts.Rep) + ((Archipelago.Progress - 7) * 2), 1)
+    if (player.archipelago.isArch) return Math.max(2.5 * (1.33 ** Archipelago.Boosts.Rep) + (Archipelago.Progress - 5), 1)
     return Math.max(3 + ((Archipelago.Progress - 7) * 2), 1);
   }
 
@@ -179,43 +179,43 @@ export class Archipelago { // make the game run faster so others don't need to w
           Archipelago.Boosts.AD += 1;
           break;
         case "Infinity Dimension Power":
-            Archipelago.Boosts.ID += 1;
-            break;
+          Archipelago.Boosts.ID += 1;
+          break;
         case "Time Dimension Power":
-            Archipelago.Boosts.TD += 1;
-            break;
+          Archipelago.Boosts.TD += 1;
+          break;
         case "Infinity Point Power":
-            Archipelago.Boosts.IP += 1;
-            break;
+          Archipelago.Boosts.IP += 1;
+          break;
         case "Eternity Point Power":
-            Archipelago.Boosts.EP += 1;
-            break;
+          Archipelago.Boosts.EP += 1;
+          break;
         case "Reality Machines Power":
-            Archipelago.Boosts.RM += 1;
-            break;
+          Archipelago.Boosts.RM += 1;
+          break;
         case "Replicanti Speed":
-            Archipelago.Boosts.Rep += 1;
-            break;
-        case "Tachyon Particles Muliplier":
-            Archipelago.Boosts.TP += 1;
-            break;
-        case "Relic Shard Muliplier":
-            Archipelago.Boosts.Relic += 1;
-            break;
-        case "Ra Memory Muliplier":
-            Archipelago.Boosts.Ra += 1;
-            break;
+          Archipelago.Boosts.Rep += 1;
+          break;
+        case "Tachyon Particles Multiplier":
+          Archipelago.Boosts.TP += 1;
+          break;
+        case "Relic Shard Multiplier":
+          Archipelago.Boosts.Relic += 1;
+          break;
+        case "Ra Memory Multiplier":
+          Archipelago.Boosts.Ra += 1;
+          break;
         case "Dark Matter Dimension Multiplier":
-            Archipelago.Boosts.DMD += 1;
-            break;
+          Archipelago.Boosts.DMD += 1;
+          break;
         case "Remanant Multiplier":
-            Archipelago.Boosts.Rem += 1;
-            break;
+          Archipelago.Boosts.Rem += 1;
+          break;
         case "Reality Shard Multiplier":
-            Archipelago.Boosts.Shards += 1;
-            break;
+          Archipelago.Boosts.Shards += 1;
+          break;
         default:
-            break;
+          break;
       }
     });
 
@@ -224,26 +224,26 @@ export class Archipelago { // make the game run faster so others don't need to w
 
     if (player.archipelago.traps.has(Archipelago.Client.items.received.last().locationName)) return; // only apply once
 
-    switch(Archipelago.Client.items.received.last().name){
-      case "Dilation": // ten minutes of ^ 0.7 ADs
+    switch (Archipelago.Client.items.received.last().name) {
+      case "Dilation Trap": // ten minutes of ^ 0.7 ADs
         player.archipelago.dilationTrapTime += 10 * 60 * 1000;
         player.archipelago.traps.add(Archipelago.Client.items.received.last().locationName);
         break;
-      case "Pause": // three minutes pause
+      case "Pause Trap": // three minutes pause
         player.archipelago.pauseTrapTime += 3 * 60 * 1000;
         player.archipelago.traps.add(Archipelago.Client.items.received.last().locationName);
         break;
     }
 
   }
-  
+
 }
 
 import { SetPurchasableMechanicState } from "./game-mechanics";
 
 class ArchipelagoUpgrade extends SetPurchasableMechanicState {
 
-  get set() {return player.archipelago.items }
+  get set() { return player.archipelago.items }
 
   get bitIndex() {
     return this.id;
@@ -253,35 +253,37 @@ class ArchipelagoUpgrade extends SetPurchasableMechanicState {
     return this.id;
   }
 
-  get description(){
+  get description() {
     return this._config.des();
   }
 
-  req(){
+  req() {
     return this._config.req();
   }
 
-  check(){
-    if(this.req()) this.onPurchased();
+  check() {
+    if (this.req()) this.onPurchased();
   }
 
   onPurchased() {
-    Archipelago.Client.check(this.id);
+    Archipelago.Client.check(this.id + 1); // needed offset
     player.archipelago.items.add(this.id);
-    if (this.id == 49) {
+    if (this.id == 52) {
       Archipelago.Client.goal();
       player.archipelago.items.clear();
-      for (let i = 0; i < 50; i++) {
-        player.archipelago.items.add(i);
-      }
+      // for (let i = 0; i < 50; i++) {
+      //   player.archipelago.items.add(i);
+      // }
     }
   }
 }
 
 const Req = [
-  () => Currency.antimatter.gte(DC.E25), // Pre Infinity
+  () => player.dimensionBoosts > 0, // Pre Infinity
+  () => Currency.antimatter.gte(DC.E25),
   () => Currency.antimatter.gte(DC.E75),
   () => Currency.antimatter.gte(DC.E140),
+  () => Currency.antimatter.gte(DC.E250),
   () => Currency.infinityPoints.gte(DC.E1), // Post Infinity
   () => Currency.infinityPoints.gte(500),
   () => Currency.infinityPoints.gte(DC.E4),
@@ -293,21 +295,21 @@ const Req = [
   () => Currency.infinityPoints.gte(DC.E200),
   () => Currency.infinityPoints.gte(DC.E300),
   () => Currency.eternityPoints.gte(DC.E3), // Eternity
-  () => Currency.timeTheorems.max.gte(200), 
+  () => Currency.timeTheorems.max.gte(200),
   () => EternityChallenge(1).isFullyCompleted && EternityChallenge(2).isFullyCompleted && EternityChallenge(3).isFullyCompleted,
-  () => [1,2,3,4,5,6,7,8,9].every(x => EternityChallenge(x).isFullyCompleted),
+  () => [1, 2, 3, 4, 5, 6, 7, 8, 9].every(x => EternityChallenge(x).isFullyCompleted),
   () => player.timestudy.studies.length >= 42, // Lower Studies
   () => EternityChallenge(11).isFullyCompleted,
   () => EternityChallenge(12).isFullyCompleted,
   () => Currency.tachyonParticles.gte(DC.E4), // Dilation
   () => DilationUpgrade.all[12].isBought,
   () => DilationTimeStudyState.studies[6].isBought,
-  () => RealityUpgrades.all.countWhere(x => x.isBought ) > 15, // Reality
+  () => RealityUpgrades.all.countWhere(x => x.isBought) > 15, // Reality
   () => Currency.perkPoints.gte(1000),
   () => Currency.realityMachines.gte(DC.E30),
   () => Teresa.pouredAmount >= Teresa.pouredAmountCap, // Teresa
   () => Effarig.currentStage > 3, // Effarig
-  () => player.galaxies >= 1500 && player.requirementChecks.infinity.noAD8, // Nameless
+  () => player.galaxies >= 1500 && player.requirementChecks.infinity.noAD8 && Enslaved.isRunning, // Nameless
   () => V.spaceTheorems >= 12, // V
   () => V.spaceTheorems >= 24,
   () => V.spaceTheorems >= 36,
@@ -315,7 +317,7 @@ const Req = [
   () => Ra.totalPetLevel >= 50,
   () => Ra.totalPetLevel >= 75,
   () => Ra.totalPetLevel >= 100,
-  () => AlchemyResources.all.countWhere(r => r.amount >= 25000), // Imaginary
+  () => AlchemyResources.all.countWhere(r => r.amount >= 25000) > 20, // Imaginary
   () => Currency.imaginaryMachines.gte(1e9),
   () => ImaginaryUpgrade(15).isBought && ImaginaryUpgrade(16).isBought && ImaginaryUpgrade(17).isBought && ImaginaryUpgrade(18).isBought, // Laitela
   () => Laitela.isFullyDestabilized,
@@ -332,9 +334,11 @@ const Req = [
 ]
 
 const Des = [
+  () => `Reach ${format(1)} Dimension Boost`, // Pre Infinity
   () => `Reach ${format(DC.E25)} Antimatter`, // Pre Infinity
   () => `Reach ${format(DC.E75)} Antimatter`,
   () => `Reach ${format(DC.E140)} Antimatter`,
+  () => `Reach ${format(DC.E250)} Antimatter`,
   () => `Reach ${format(DC.E1)} Infinity Points`, // Post Infinity
   () => `Reach ${format(500)} Infinity Points`,
   () => `Reach ${format(DC.E4)} Infinity Points`,
@@ -347,12 +351,12 @@ const Des = [
   () => `Reach ${format(DC.E300)} Infinity Points`,
   () => `Reach ${format(DC.E3)} Eternity Points`, // Eternity
   () => `Reach ${format(200)} Time Theorems`,
-  () => `Fully complete Etrenity Challenges 1,2, and 3`,
-  () => `Fully complete Etrenity Challenges 1 to 9`,
+  () => `Fully complete Eternity Challenges 1,2, and 3`,
+  () => `Fully complete Eternity Challenges 1 to 9`,
   () => `Have ${format(42)} Time Studies at once`, // lower Studies
-  () => `Fully complete Etrenity Challenge 11`,
-  () => `Fully complete Etrenity Challenge 12`,
-  () => `Reach ${format(DC.E4)} Tachyon Particles`,
+  () => `Fully complete Eternity Challenge 11`,
+  () => `Fully complete Eternity Challenge 12`,
+  () => `Reach ${format(DC.E4)} Tachyon Particles`, // Dilation
   () => `Buy the last Dilation upgrade`,
   () => `Buy the Reality Time Study`,
   () => `Have ${format(15)} Reality Upgrades`, // Reality
@@ -360,7 +364,7 @@ const Des = [
   () => `Reach ${format(DC.E30)} Reality Machines`,
   () => `Fill Teresa's Reality Machine container`, // Teresa
   () => `Complete Effarig's Reality`, // Effarig
-  () => `Reach ${format(1500,2,2)} Antimatter Galaxies in The Nameless Ones' Reality`, // Nameless
+  () => `Reach ${format(1500, 2, 2)} Antimatter Galaxies in The Nameless Ones' Reality`, // Nameless
   () => `Complete ${format(12)} V Achievements`, // V
   () => `Complete ${format(24)} V Achievements`,
   () => `Complete ${format(36)} V Achievements`,
@@ -369,7 +373,7 @@ const Des = [
   () => `Reach ${format(75)} Ra total levels`,
   () => `Reach ${format(100)} Ra total levels`,
   () => `Cap all Alchemy Resources`, // Imaginary
-  () => `Reach ${format(DC.E9,2,2)} Imaginary Machines`,
+  () => `Reach ${format(DC.E9, 2, 2)} Imaginary Machines`,
   () => `Unlock all Dark Matter Dimensions`, // Laitela
   () => `Fully destabilize Lai'tela's Reality`,
   () => `Complete all Singularity Milestones at least once.`,
@@ -386,32 +390,46 @@ const Des = [
 
 function MakeItems() {
   window.ArchipelagoUpgrades = mapGameDataToObject(
-  Array.range(0, Req.length).map((x,i) => {
-    return {
-      id: i, // for what ever reason i can't use the "x" and keep the game balanced
-      req: Req[i],
-      des: Des[i]
-    }
-  }),
-  config => new ArchipelagoUpgrade(config)
-);
+    Array.range(0, Req.length).map((x, i) => {
+      return {
+        id: i, // for what ever reason i can't use the "x" and keep the game balanced
+        req: Req[i],
+        des: Des[i]
+      }
+    }),
+    config => new ArchipelagoUpgrade(config)
+  );
 }
+
+window.forceUIUpdate = false;
 
 Archipelago.Client.messages.on("message", (content) => {
   console.log(content);
-
   if (content.startsWith("Now that you are connected")) {
-    if(!player.archipelago.isArch) {
+    if (!player.archipelago.isArch) {
+      let a = player.archipelago.lastName;
+      let b = player.archipelago.lastPassword;
+      let c = player.archipelago.lastURL;
+      let d = player.speedrun.hasStarted;
       Speedrun.prepareSave();
-      Archipelago.Client = new Archipelago.Module.Client();
+      player.archipelago.isArch = true;
+      player.archipelago.lastName = a;
+      player.archipelago.lastPassword = b;
+      player.archipelago.lastURL = c;
+      player.seed = Number.parseInt(Archipelago.Client.room.seedName);
+      GameStorage.save();
+      if (d) window.location.reload();
+      
     }
-    player.archipelago.isArch = true;
+    Randomize();
     MakeItems();
     Archipelago.UpdateItems();
     Archipelago.Client.updateStatus(Archipelago.Module.clientStatuses.ready);
+
+    forceUIUpdate = true;
     return;
   }
-  
+
   if (content.includes(", found their ,")) {
     GameUI.notify.success(content, 5000);
   } else if (content.includes(", sent ,")) {

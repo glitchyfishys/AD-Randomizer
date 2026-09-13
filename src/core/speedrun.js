@@ -1,5 +1,6 @@
 import { GameDatabase } from "./secret-formula/game-database";
 import { GameMechanicState } from "./game-mechanics";
+import { Randomize } from "./randomizer";
 
 export const Speedrun = {
   officialFixedSeed: 69420,
@@ -86,7 +87,8 @@ export const Speedrun = {
     player.speedrun.hasStarted = true;
     player.speedrun.startDate = Date.now();
     player.lastUpdate = Date.now();
-    Archipelago.Client.updateStatus(Archipelago.Module.clientStatuses.playing);
+    if (player.archipelago.isArch) Archipelago.Client.updateStatus(Archipelago.Module.clientStatuses.playing);
+    else Randomize();
   },
   isPausedAtStart() {
     return (player.speedrun.isActive && !player.speedrun.hasStarted && GameEnd.additionalEnd == 0) || (player.archipelago.isArch && !Archipelago.Client.socket.connected);

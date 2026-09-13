@@ -1047,6 +1047,7 @@ export function simulateTime(seconds, real, fast) {
 }
 
 window.onload = function() {
+  if (!player.archipelago.isArch && player.speedrun.hasStarted) Randomize();
   const supportedBrowser = browserCheck();
   GameUI.initialized = supportedBrowser;
   ui.view.initialized = supportedBrowser;
