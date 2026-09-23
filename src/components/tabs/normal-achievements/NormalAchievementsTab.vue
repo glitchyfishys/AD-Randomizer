@@ -81,7 +81,7 @@ export default {
       this.isAutoAchieveActive = player.reality.autoAchieve;
       this.hideCompletedRows = player.options.hideCompletedAchievementRows;
       this.achMultBreak = BreakInfinityUpgrade[7].canBeApplied;
-      this.achMultToIDS = Achievement(75).isUnlocked;
+      this.achMultToIDS = Achievement(75).canBeApplied;
       this.achMultToTDS = EternityUpgrade.tdMultAchs.isBought;
       this.achMultToTP = RealityUpgrade(8).isBought;
       this.achMultToBH = VUnlocks.achievementBH.canBeApplied;

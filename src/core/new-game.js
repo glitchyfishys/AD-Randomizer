@@ -43,6 +43,7 @@ export const NG = {
     GameEnd.additionalEnd = 15;
     // Without the delay, this causes the saving (and its notification) to occur during the credits rollback
     setTimeout(() => GameStorage.save(), 10000);
+    Archipelago.reset();
   },
 
   // Reset the game, but carry over some post-completion stats. We also call this when starting a speedrun, so make sure

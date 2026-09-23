@@ -20,7 +20,7 @@ export const ra = {
     },
     enslaved: {
       id: "enslaved",
-      name: "The Nameless Ones",
+      name: "Enslaved",
       color: "#f1aa7f",
       chunkGain: "Time Shards",
       memoryGain: "total time played",

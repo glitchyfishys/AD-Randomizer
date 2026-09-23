@@ -86,7 +86,7 @@ export default {
       this.ipMultSoftCap = GameDatabase.infinity.upgrades[17].costIncreaseThreshold;
       this.ipMultHardCap = GameDatabase.infinity.upgrades[17].costCap;
       this.eternityUnlocked = PlayerProgress.current.isEternityUnlocked;
-      this.bottomRowUnlocked = Achievement(41).isUnlocked;
+      this.bottomRowUnlocked = Achievement(41).canBeApplied;
     },
     btnClassObject(column) {
       const classObject = {

@@ -1833,6 +1833,17 @@ Rifts once the current cap has been reached.`,
       tags: ["reality", "antimatter", "lategame", "endgame", "final", "pelle", "galaxy",
         "galaxies", "generator", "celestial"],
       tab: "celestials/pelle"
+    }, {
+      name: "Archipelago Randomizer",
+      info: () => `
+        If you're looking to join an Archipelago go to the Archipelago or settings tab. <br>
+        If you're looking for the AP World it's in the Github repository here:
+        <a href="https://github.com/glitchyfishys/AD-Randomizer/blob/main/Archipelago/Antimatter%20Dimensions%20Randomizer.apworld" target="_blank">https://github.com/glitchyfishys/AD-Randomizer/blob/main/Archipelago/Antimatter%20Dimensions%20Randomizer.apworld</a>
+        `,
+      isUnlocked: () => true,
+      tags: ["archipelago", "randomizer", "multiplayer", "annoying", "glitchyfishys",
+        "apworld", "archipelago", "bug", "broken", "fix"],
+      tab: "celestials/pelle"
     }
   ]
 };

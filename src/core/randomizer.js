@@ -31,6 +31,145 @@ export class RandomizerRNG { // i don't know where to put this
 
 }
 
+var Defaults = {}
+
+
+export function SetDefaults(){
+  Defaults.AD1BC = AntimatterDimensions.all[0]._baseCost / 10;
+  Defaults.AD1C6BC = AntimatterDimensions.all[0]._c6BaseCost / 10;
+
+  for (let i = 1; i < 8; i++) {
+    Defaults["AD" + i + "BC"] = AntimatterDimensions.all[i]._baseCost / 10;
+    Defaults["AD" + i + "C6BC"] = AntimatterDimensions.all[i]._c6BaseCost / 10;
+  }
+
+  Defaults.TickspeedBC = Tickspeed.baseCost;
+
+  for (let i = 1; i < 8; i++) {
+    Defaults["InfinityDim" + i] = InfinityDimensions.all[i]._baseCost;
+    Defaults["TimeDim" + i] = TimeDimensions.all[i]._baseCost;
+  }
+
+  Defaults.InfintiyUpgrades = new Array(InfinityUpgrade.all).flat();
+
+  Defaults.GDInfintiyUpgrades = new Array(GameDatabase.infinity.upgrades).flat();
+
+  Defaults.NormalChallenges = new Array(NormalChallenges.all).flat();
+  Defaults.BreakInfinityUpgrades = new Array(GameDatabase.infinity.breakUpgrades).flat();
+  Defaults.EternityMilestones = new Array(GameDatabase.eternity.milestones).flat();
+  Defaults.Timestudies = new Array(NormalTimeStudyState.all).flat();
+  Defaults.TSpath = new Array(NormalTimeStudies.pathList).flat();
+  Defaults.TSID = new Array(NormalTimeStudyState.allWithIds).flat();
+
+  Defaults.TSIDs = TimeStudy.allConnections.map( x => {
+    return {to: x._to.id, from: x._from.id};
+  })
+
+  Defaults.StudyInfo = NormalTimeStudyState.all.map(x => {
+    return {id: x.id, type: x._config.reqType, req: x._config.requirement, path: x._path, STStudies: x._config.requiresST, STCost: x._config.STCost, unlocked: x._config.unlocked };
+  });
+
+  Defaults.Dilation = new Array(DilationUpgrade.all).flat();
+  Defaults.RealityUpgrades = new Array(RealityUpgrades.all).flat();
+  Defaults.ImaginaryUpgrades = new Array(ImaginaryUpgrades.all).flat();
+  Defaults.Quotes = {
+    Teresa: Teresa.quotes.all,
+    Effarig: Effarig.quotes.all,
+    Enslaved: Enslaved.quotes.all,
+    V: V.quotes.all,
+    Ra: Ra.quotes.all,
+    Laitela: Laitela.quotes.all,
+    Pelle: Pelle.quotes.all
+  }
+
+  Object.freeze(Defaults);
+  
+}
+
+export function ResetRandomize(){
+  AntimatterDimensions.all[0]._baseCost = Defaults.AD1BC;
+  AntimatterDimensions.all[0]._c6BaseCost = Defaults.AD1C6BC;
+
+  for (let i = 1; i < 8; i++) {
+    AntimatterDimensions.all[i]._baseCost = Defaults["AD" + i + "BC"];
+    AntimatterDimensions.all[i]._c6BaseCost = Defaults["AD" + i + "C6BC"];
+  }
+
+  Tickspeed.baseCost = Defaults.TickspeedBC;
+
+  for (let i = 1; i < 8; i++) {
+    InfinityDimensions.all[i]._baseCost = Defaults["InfinityDim" + i];
+    TimeDimensions.all[i]._baseCost = Defaults["TimeDim" + i];
+  }
+
+  InfinityUpgrade.all = new Array(Defaults.InfintiyUpgrades).flat();
+  GameDatabase.infinity.upgrades = new Array(Defaults.GDInfintiyUpgrades).flat();
+
+  InfinityUpgrade.all.forEach((L, I) => {
+    if (I % 4 == 0) L.config.checkRequirement = undefined;
+    else L.config.checkRequirement = () => InfinityUpgrade.all[I - 1].isBought;
+  });
+
+  NormalChallenges.all = new Array(Defaults.NormalChallenges).flat();
+  GameDatabase.infinity.breakUpgrades = new Array(Defaults.BreakInfinityUpgrades).flat();
+  GameDatabase.eternity.milestones = new Array(Defaults.EternityMilestones).flat();
+  NormalTimeStudyState.all = new Array(Defaults.Timestudies).flat();
+  NormalTimeStudies.pathList = new Array(Defaults.TSpath).flat();
+  NormalTimeStudyState.allWithIds = new Array(Defaults.TSID).flat();
+
+  Defaults.StudyInfo.forEach(x => {
+    const L = TimeStudyWithIds(x.id);
+    L._config.requirement = x.req;
+    L._config.reqType = x.type;
+    if (x.STStudies) L._config.requiresST = x.STStudies;
+    if (x.STCost) L._config.STCost = x.STCost;
+    L._path = x.path;
+    L._tID = x.id;
+    if (x.unlocked) L._config.unlocked = x.unlocked;
+  });
+
+  const sty = (id, challenge, dilation) => {
+    return dilation ? DilationTimeStudyState.studies[id] : (challenge ? TimeStudy.eternityChallenge(id) :  TimeStudyWithIds(id))
+  }
+
+  TimeStudy.allConnections.forEach((k, i) => {
+    k._from = sty(Defaults.TSIDs[i].from, k._from instanceof ECTimeStudyState , k._from instanceof DilationTimeStudyState);
+    k._to = sty(Defaults.TSIDs[i].to, k._to instanceof ECTimeStudyState , k._to instanceof DilationTimeStudyState);
+  });
+
+  const R = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,25,30,40,50,60,80,100,200,1000];
+  EternityMilestone.all.forEach((k, i) => {
+    k.config.eternities = R[i];
+  });
+
+  DilationUpgrade.all = new Array(Defaults.Dilation).flat();
+  ImaginaryUpgrades.all = new Array(Defaults.ImaginaryUpgrades).flat();
+  RealityUpgrades.all = new Array(Defaults.RealityUpgrades).flat();
+
+  const K = [1e14, 1e18, 1e24, 1e21, 1e10, 1e6];
+  TeresaUnlocks.all.forEach((x,i) => {
+    x._config.price = K[i];
+  });
+  Teresa.lastUnlock = TeresaUnlocks.all.find(x => x.price == 1e24)._config.Uid;
+
+  var Q = Array.range(0,7).map(x => "Teresa");
+  Q.push(Array.range(0,7).map(x => "Effarig"));
+  Q.push(Array.range(0,7).map(x => "Enslaved"));
+  Q.push(Array.range(0,7).map(x => "V"));
+  Q = Q.flat();
+
+  Ra.unlocks.all.forEach((x,i) => Ra.unlocks.all[i]._config.pet = Q[i]);
+  
+  Teresa.quotes.all = Defaults.Quotes.Teresa;
+  Effarig.quotes.all = Defaults.Quotes.Effarig;
+  Enslaved.quotes.all = Defaults.Quotes.Enslaved
+  V.quotes.all = Defaults.Quotes.V;
+  Ra.quotes.all = Defaults.Quotes.Ra;
+  Laitela.quotes.all = Defaults.Quotes.Laitela;
+  Pelle.quotes.all = Defaults.Quotes.Pelle;
+
+}
+
 export function Randomize() {
     const Rando = new RandomizerRNG();
 
@@ -106,8 +245,6 @@ export function Randomize() {
       k.config.eternities = R[i];
     });
 
-    
-
     const Ids = NormalTimeStudyState.all.map(x => x.id);
     const IDsUpper = Ids.filter(x => x < 70 && x != 52).shuffle(Rando);
     const IDsDimSplit = Ids.filter(x => x > 70 && x < 110).shuffle(Rando);
@@ -149,14 +286,12 @@ export function Randomize() {
       NormalTimeStudyState.allWithIds[IDsDL2[i]] = x;
     });
 
-
     const Triad = NormalTimeStudyState.all.filter(x => x.isTriad).shuffle(Rando);
     NormalTimeStudyState.allWithIds[301]  = Triad[0];
     NormalTimeStudyState.allWithIds[302]  = Triad[1];
     NormalTimeStudyState.allWithIds[303]  = Triad[2];
     NormalTimeStudyState.allWithIds[304]  = Triad[3];
     
-
     const sty = (id, challenge, dilation) => {
       return dilation ? DilationTimeStudyState.studies[id] : (challenge ? TimeStudy.eternityChallenge(id) :  TimeStudyWithIds(id))
     }
@@ -220,7 +355,7 @@ export function Randomize() {
 
     RealityUpgrades.all = RealityUpgrades.all.shuffle(Rando);
     
-    const K = [1e6, 1e10, 1e14, 1e18, 1e21, 1e24].shuffle(Rando);
+    const K = [1e14, 1e18, 1e24, 1e21, 1e10, 1e6].shuffle(Rando);
     TeresaUnlocks.all.forEach((x,i) => {
       x._config.price = K[i];
     });
@@ -230,7 +365,7 @@ export function Randomize() {
     
     var Q = Array.range(0,7).map(x => "Teresa");
     Q.push(Array.range(0,7).map(x => "Effarig"));
-    Q.push(Array.range(0,7).map(x => "The Nameless Ones"));
+    Q.push(Array.range(0,7).map(x => "Enslaved"));
     Q.push(Array.range(0,7).map(x => "V"));
     Q = Q.flat().shuffle(Rando);
 

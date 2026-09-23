@@ -40,7 +40,11 @@ import TimeDimensionsTab from "./time-dimensions/TimeDimensionsTab";
 import TimeStudiesTab from "./time-studies/TimeStudiesTab";
 import VTab from "./celestial-v/VTab";
 
-import ArchTab from "./archipelago/ArchipelagoTab.vue";
+import ArchBuffsTab from "./archipelago/ArchipelagoBuffsTab";
+import ArchItemsTab from "./archipelago/ArchipelagoItemsTab";
+import ArchChatTab from "./archipelago/ArchipelagoChatTab";
+import ArchJoinTab from "./archipelago/ArchipelagoJoinTab";
+import ArchSTDUpgradeTab from "./archipelago/ArchipelagoSTDUpgradeTab";
 
 
 const TabComponents = {
@@ -84,7 +88,11 @@ const TabComponents = {
   BlackHoleTab,
   AlchemyTab,
   CelestialNavigationTab,
-  ArchTab
+  ArchBuffsTab,
+  ArchItemsTab,
+  ArchChatTab,
+  ArchJoinTab,
+  ArchSTDUpgradeTab
 };
 
 export default TabComponents;

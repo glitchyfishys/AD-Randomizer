@@ -17,6 +17,7 @@ export default {
     },
     handleChange(event) {
       const newName = this.removeNotAvailableCharacters(event.target.value.trim());
+    if (newName.toLowerCase() == "icely puzzles") SecretAchievement(33).unlock()
       player.options.saveFileName = newName;
       event.target.value = newName;
     }

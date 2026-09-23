@@ -29,7 +29,7 @@ export default {
     hardReset() {
       if (this.willHardReset) GameStorage.hardReset();
       this.input = "";
-      window.location.reload();
+      ResetRandomize();
     },
   },
 };
@@ -46,7 +46,7 @@ export default {
       HARD RESET
     </template>
     <div class="c-modal-message__text">
-      Please confirm your desire to hard reset this save slot. The page will reload for the new randomizer seed. <br>
+      Please confirm your desire to hard reset this save slot. <br>
       <span class="c-modal-hard-reset-danger">Deleting your save will not unlock anything secret.</span> <br>
       Type in "I want a new Archipelago" to confirm.
       <div class="c-modal-hard-reset-danger">

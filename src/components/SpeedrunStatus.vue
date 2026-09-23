@@ -17,7 +17,7 @@ export default {
       seedText: 0,
       canModifySeed: false,
       isComplete: false,
-      items: 0,
+      localUpgrades: 0,
       totalItems: 0
     };
   },
@@ -62,8 +62,8 @@ export default {
       this.isComplete = Achievement(188).isUnlocked;
 
       if (player.archipelago.isArch && Archipelago.Client.socket.connected) {
-        if (Archipelago.Items.length > 0) this.items = Archipelago.Items.length;
-        if (ArchipelagoUpgrades.all) this.totalItems = ArchipelagoUpgrades.all.length;
+        this.localUpgrades = Archipelago.Client.room.checkedLocations.length;
+        if (ArchipelagoChecks.all) this.totalItems = ArchipelagoChecks.all.length;
       }
 
       this.timePlayedStr = Time.realTimePlayed.toStringShort();
@@ -106,7 +106,7 @@ export default {
       <br>
       <span>
         Player Name: {{ saveName }} <br>
-        <span v-if="totalItems > 0">You have collected {{items}} of {{totalItems}} Items </span> <br>   
+        <span v-if="totalItems > 0">You have Checked {{localUpgrades}} of {{totalItems}} Locations </span> <br>   
       </span>
       <br>
       <i>{{ segmentText }}</i>

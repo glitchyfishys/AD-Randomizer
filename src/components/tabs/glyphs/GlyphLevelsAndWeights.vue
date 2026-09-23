@@ -144,7 +144,7 @@ export default {
         // the achievement reward that automatically adjusts weights.
         this.resetSavedWeights();
       }
-      this.showAutoAdjustWeights = Achievement(165).isUnlocked;
+      this.showAutoAdjustWeights = Achievement(165).canBeApplied;
       this.isAutoAdjustWeightsOn = player.celestials.effarig.autoAdjustGlyphWeights;
     },
     rowStyle(factor) {

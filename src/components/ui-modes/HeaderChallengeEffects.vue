@@ -103,7 +103,6 @@ export default {
     <div v-if="isChallengePowerVisible">
       {{ challengePower }}
     </div>
-
     <div v-if="traps.pause > 0">
       Game is Paused for {{ pauseTime }}
     </div>

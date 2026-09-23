@@ -24,6 +24,7 @@ export default {
     return {
       isDisabled: false,
       isUnlocked: false,
+      isEffectActive: false,
       isMouseOver: false,
       isCancer: false,
       showUnlockState: false,
@@ -54,6 +55,8 @@ export default {
         "o-achievement--disabled": this.isDisabled,
         "o-achievement--locked": !this.isUnlocked && !this.isDisabled && !this.isObscured,
         "o-achievement--unlocked": this.isUnlocked,
+        "o-achievement--unlocked-without-effect": this.isUnlocked && !this.isEffectActive && this.hasReward,
+        "o-achievement--has-effect": !this.isUnlocked && this.isEffectActive && this.hasReward,
         "o-achievement--waiting": !this.isUnlocked && this.isPreRealityAchievement && !this.isDisabled,
         "o-achievement--blink": !this.isUnlocked && this.id === 78 && !this.isDisabled,
         "o-achievement--normal": !this.isCancer && !this.isObscured,
@@ -113,6 +116,7 @@ export default {
     update() {
       this.isDisabled = Pelle.disabledAchievements.includes(this.id) && Pelle.isDoomed;
       this.isUnlocked = this.achievement.isUnlocked && !this.isDisabled;
+      this.isEffectActive = this.achievement.isEffectActive;
       this.isCancer = Theme.current().name === "S4" || player.secretUnlocks.cancerAchievements;
       this.showUnlockState = player.options.showHintText.achievementUnlockStates;
       this.realityUnlocked = PlayerProgress.realityUnlocked();
@@ -290,6 +294,16 @@ export default {
 .t-s8 .o-achievement--waiting {
   background-color: #ffee58;
   border-color: #757575;
+}
+
+.o-achievement--has-effect {
+  background-color: #f1ae13;
+  border-color: #959365;
+}
+
+.o-achievement--unlocked-without-effect {
+  background-color: #59f9b1;
+  border-color: #6aa58e;
 }
 
 .o-achievement--blink {

@@ -31,7 +31,7 @@ class RaUnlockState extends BitUpgradeState {
   }
 
   get pet() {
-    return Ra.pets.all[["Teresa", "Effarig", "The Nameless Ones", "V"].indexOf(this.config.pet)];
+    return Ra.pets.all[["Teresa", "Effarig", "Enslaved", "V"].indexOf(this.config.pet)];
   }
 
   get level() {
@@ -260,7 +260,7 @@ export const Ra = {
     for (const pet of Ra.pets.all) {
       if (pet.memoryProductionMultiplier !== 1) boostList.push(pet.memoryGain);
     }
-    if (Achievement(168).isUnlocked) boostList.push("Achievement 168");
+    if (Achievement(168).canBeApplied) boostList.push("Achievement 168");
     if (Ra.unlocks.continuousTTBoost.canBeApplied) boostList.push("current TT");
 
     if (boostList.length === 1) return `${boostList[0]}`;

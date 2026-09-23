@@ -477,3 +477,13 @@ Currency.galaxyGeneratorGalaxies = new class extends NumberCurrency {
     player.celestials.pelle.galaxyGenerator.spentGalaxies += spent;
   }
 }();
+
+Currency.STDCoins = new class extends NumberCurrency {
+  get value() {
+    return Archipelago.AvailableSTDCoins;
+  }
+
+  set value(value) {
+    // just disabled
+  }
+}();

@@ -56,7 +56,7 @@ export class Galaxy {
       amount *= Math.pow(1.002, galaxies - (Galaxy.remoteStart - 1));
     }
 
-    amount -= Effects.sum(InfinityUpgrade.resetBoost);
+    amount -= Effects.sum(InfinityUpgrade[5]);
     if (InfinityChallenge(5).isCompleted) amount -= 1;
 
     if (GlyphAlteration.isAdded("power")) amount *= getSecondaryGlyphEffect("powerpow");
@@ -122,7 +122,7 @@ export class Galaxy {
 function galaxyReset() {
   EventHub.dispatch(GAME_EVENT.GALAXY_RESET_BEFORE);
   player.galaxies++;
-  if (!Achievement(143).isUnlocked || (Pelle.isDoomed && !PelleUpgrade.galaxyNoResetDimboost.canBeApplied)) {
+  if (!Achievement(143).canBeApplied || (Pelle.isDoomed && !PelleUpgrade.galaxyNoResetDimboost.canBeApplied)) {
     player.dimensionBoosts = 0;
   }
   softReset(0);

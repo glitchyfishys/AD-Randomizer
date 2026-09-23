@@ -207,7 +207,7 @@ export const infinityUpgrades = [
   {
     id: 16,
     cost: 1000,
-    checkRequirement: () => Achievement(41).isUnlocked,
+    checkRequirement: () => Achievement(41).canBeApplied,
     description: () => (player.options.offlineProgress
       ? `Only while offline, gain ${formatPercents(0.5)} of your best IP/min without using Max All`
       : "This upgrade would give offline Infinity Point generation, but offline progress is currently disabled"),
@@ -221,7 +221,7 @@ export const infinityUpgrades = [
     id: 17,
     pelle: true,
     cost: () => InfinityUpgrade.all[17].cost,
-    checkRequirement: () => Achievement(41).isUnlocked,
+    checkRequirement: () => Achievement(41).canBeApplied,
     costCap: DC.E6E6,
     costIncreaseThreshold: DC.E3E6,
     description: () => `Multiply Infinity Points from all sources by ${formatX(2)}`,

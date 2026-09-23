@@ -170,7 +170,7 @@ class InfinityIPMultUpgrade extends GameMechanicState {
   }
 
   get isRequirementSatisfied() {
-    return Achievement(41).isUnlocked;
+    return Achievement(41).canBeApplied;
   }
 
   get canBeBought() {

@@ -44,7 +44,7 @@ export const secretAchievements = [
     id: 18,
     name: "Do you feel lucky? Well do ya punk?",
     get description() {
-      return `You have a ${formatInt(1)}/${formatInt(1e5)} chance of getting this achievement every second.`;
+      return `You have a ${formatInt(1)}/${formatInt(1e4)} chance of getting this achievement every second.`;
     }
   },
   {
@@ -117,8 +117,8 @@ export const secretAchievements = [
   },
   {
     id: 33,
-    name: "A sound financial decision",
-    description: "Click on the button to purchase STD coins."
+    name: "Chess Battle Advanced",
+    description: 'Name your save "Icely Puzzles".'
   },
   {
     id: 34,
@@ -128,14 +128,14 @@ export const secretAchievements = [
   {
     id: 35,
     name: "Should we tell them about buy max...",
-    get description() { return `Buy single Tickspeed upgrades ${formatInt(1e5)} times.`; },
-    checkRequirement: () => player.requirementChecks.permanent.singleTickspeed >= 1e5,
+    get description() { return `Buy single Tickspeed upgrades ${formatInt(1e4)} times.`; },
+    checkRequirement: () => player.requirementChecks.permanent.singleTickspeed >= 1e4,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER
   },
   {
     id: 36,
     name: "While you were away... Nothing happened.",
-    description: "See nothing happen while you were away."
+    description: "See nothing happen while you were away or rejoin an Archipelago."
   },
   {
     id: 37,

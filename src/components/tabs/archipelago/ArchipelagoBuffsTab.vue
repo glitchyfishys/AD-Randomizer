@@ -1,30 +1,14 @@
 <script>
-import InfinityUpgradeButton from "@/components/InfinityUpgradeButton";
-import PrimaryButton from "@/components/PrimaryButton";
 
 export default {
-  name: "InfinityUpgradesTab",
-  components: {
-    PrimaryButton,
-    InfinityUpgradeButton
-  },
+  name: "ArchBuffsTab",
   data() {
     return {
-      isUseless: false,
-      creditsClosed: false,
       buffs: {},
-      items: [],
-      connected: {},
-      room: {},
-      upgrades: [],
-      localUpgrades: 0,
-      totalItems: 52,
     };
   },
   methods: {
     update() {
-      this.creditsClosed = GameEnd.creditsEverClosed;
-      this.isUseless = Pelle.isDoomed;
       this.buffs = {
         AMMul: Archipelago.antimatterMul,
         AD: Archipelago.antimatter,
@@ -38,18 +22,13 @@ export default {
         Eternities: Archipelago.eternities,
         TP: Archipelago.tachyonParticles,
         RM: Archipelago.realityMachines,
+        GlyphLevel: Archipelago.glyphLevel,
+        Memories: Archipelago.memories,
         RelicShards: Archipelago.relicShards,
         DMD: Archipelago.DMD,
         Remnants: Archipelago.remnants,
         RealityShards: Archipelago.realityShards
       }
-      this.localUpgrades = player.archipelago.items.size;
-      this.connected = Archipelago.Client.socket;
-      this.room = Archipelago.Client.room;
-      this.items = Archipelago.Items.map(x => (x.name + " from " + x.sender.name + " at " + x.locationName));
-      if (ArchipelagoUpgrades.length > 0 && ArchipelagoUpgrades.all.length > 0) this.totalItems = ArchipelagoUpgrades.all.length;
-
-      if (ArchipelagoUpgrades.all) this.upgrades =  ArchipelagoUpgrades.all;
     },
   }
 };
@@ -57,8 +36,8 @@ export default {
 
 <template>
   <div style="font-size: 2rem; margin-bottom: 5rem;">
-    You are have various Adjustments and increase over progression <br>
-    If you are in an Archipelago they are initially nerfed to compensate<br>
+    You have various Adjustments which increase over progression, just to balance things out. <br>
+    If you are in an Archipelago they are initially nerfed to compensate for Item buffs.<br><br>
     [Progress Buffs] <br><br>
     {{formatX(buffs.AMMul,2,2)}} and {{formatPow(buffs.AD,2,2)}} Antimatter Dimensions. <br>
     {{formatPow(buffs.ID,2,2)}} Infinity Dimensions. <br>
@@ -70,55 +49,13 @@ export default {
     {{formatX(buffs.Eternities,2,2)}} Eternities. <br>
     {{formatX(buffs.TP)}} Tachyon Particles. <br>
     {{formatPow(buffs.RM,2,2)}} Reality Machines. <br>
+    {{formatX(buffs.GlyphLevel,2,2)}} Glyph Level. <br>
     {{formatX(buffs.RelicShards,2,2) }} Relic Shards. <br>
+    {{formatX(buffs.Memories,2,2) }} Memories. <br>
     {{formatX(buffs.DMD,2,2) }} Dark Matter Dimensions. <br>
     {{formatX(buffs.Remnants,2,2) }} Remnants. <br>
     {{formatX(buffs.RealityShards,2,2) }} Reality Shards. <br>
     {{formatX(10,2,2) }} Galaxy Generator. <br><br>
-
-    [Archipelago Info] <br><br>
-
-    <PrimaryButton
-    class="o-primary-btn--option_font-x-large"
-    :class="{ 'o-pelle-disabled-pointer': creditsClosed }"
-    style="width: 22rem; height: 4rem;"
-    onclick="Modal.enterSpeedrun.show()"
-    >
-      Join Archipelago
-    </PrimaryButton> <br><br>
-
-    {{ connected.connected ? `Connected on ${connected.url}` : "Not Connected"}} <br>
-    <div v-if="connected.connected">
-
-      You have collected {{room.checkedLocations.length}} of {{room.allLocations.length}} Items <br><br>
-
-      [Collected Archipelago Items] <br><br>
-
-      <div
-      style="border: 3px var(--color-archipelago) solid;"
-      >
-        <div v-for="item in items"
-        style="margin: 1rem; border: 3px var(--color-archipelago) solid; width: 20%; display: inline-table;"
-        >
-            {{ item }}
-        </div>
-      </div><br><br>
-
-      [Your Archipelago Unlocks]<br><br>
-      You have collected {{localUpgrades}} of {{totalItems}} Items <br><br>
-
-      <div
-      style="border: 3px var(--color-archipelago) solid;"
-      >
-        <div v-for="ug in upgrades"
-        style="margin: 1rem; display: inline-table; width: 20%; border: 3px var(--color-archipelago) solid;"
-        :style="ug.isBought ? 'color:green' : 'color:red'"
-        >
-          {{ ug.description }}
-        </div>
-      </div>
-    </div>
-
   </div>
 </template>
 

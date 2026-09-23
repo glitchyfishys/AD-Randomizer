@@ -322,6 +322,7 @@ export function getGlyphLevelInputs() {
 
   const singularityEffect = SingularityMilestone.glyphLevelFromSingularities.effectOrDefault(1);
   baseLevel *= singularityEffect;
+  baseLevel *= Archipelago.glyphLevel;
 
   let scaledLevel = baseLevel;
   // The softcap starts at begin and rate determines how quickly level scales after the cap, turning a linear pre-cap

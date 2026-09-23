@@ -23,7 +23,8 @@ export default {
     startRun() {
       Archipelago.Client.login(this.ArchURL, this.name, "Antimatter Dimensions Randomizer", {
         password: this.pwd
-      }).then(() => {
+      }).then((SlotData) => {
+        Archipelago.SlotData = SlotData;
         player.archipelago.lastName = this.name;
         player.archipelago.lastPassword = this.pwd;
         player.archipelago.lastURL = this.ArchURL;
@@ -112,7 +113,6 @@ export default {
       <br>
       <div class="c-modal-hard-reset-danger">
         Joining an Archipelago will reset your save to the beginning of the game if this is not an Archipelago save.<br>
-        The game will reload if you have started a non Archipelago run. <br>
         Make sure to join from the same save to prevent unbalanced gameplay.
       </div>
     </div>

@@ -45,7 +45,7 @@ export default {
         this.completedRows = Achievements.prePelleRows.countWhere(r => r.every(a => a.isUnlocked));
         this.cappedResources = AlchemyResources.all.countWhere(r => r.capped);
         this.isArch = player.archipelago.isArch;
-        this.archItems = player.archipelago.items.size - 1;
+        this.archItems = Archipelago.Client.room.checkedLocations.length; // I should add a proper check for this
         this.canEnterPelle = this.completedRows === this.totalRows &&
           this.cappedResources === this.totalAlchemyResources && this.archItems >= this.totalArchItems;
       }

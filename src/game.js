@@ -378,7 +378,7 @@ export function realTimeMechanics(realDiff) {
   // Ra memory generation bypasses stored real time, but memory chunk generation is disabled when storing real time.
   // This is in order to prevent players from using time inside of Ra's reality for amplification as well
 
-  if (ArchipelagoUpgrades.all) ArchipelagoUpgrades.all.forEach(x => x.check()); // auto check items
+  if (player.archipelago.isArch && ArchipelagoChecks.all) ArchipelagoChecks.all.forEach(x => x.check()); // auto check items
   Archipelago.UpdateItems();
 
   Ra.memoryTick(realDiff, !Enslaved.isStoringRealTime);
@@ -419,6 +419,8 @@ export function gameLoop(passDiff, options = {}) {
 
   EventHub.dispatch(GAME_EVENT.GAME_TICK_BEFORE);
 
+  player.archipelago.respecTime -= Date.now() - player.lastUpdate;
+  
   if (player.archipelago.pauseTrapTime > 0){
     player.archipelago.pauseTrapTime -= Math.clamp(Date.now() - player.lastUpdate, 1, 8.64e7);
     player.lastUpdate = Date.now();
@@ -445,6 +447,12 @@ export function gameLoop(passDiff, options = {}) {
   // result in a ~1 second tick rate for browsers.
   // Note that we have to explicitly call all the real-time mechanics with the existing value of realDiff, because
   // simply letting it run through simulateTime seems to result in it using zero
+
+  if (player.archipelago.isArch && !Archipelago.Client.socket.connected) {
+    
+    return;
+  }
+
   if (player.options.hibernationCatchup && passDiff === undefined && realDiff > 6e4) {
     GameIntervals.gameLoop.stop();
     simulateTime(realDiff / 1000, true);
@@ -473,7 +481,7 @@ export function gameLoop(passDiff, options = {}) {
   Autobuyers.tick();
   Tutorial.tutorialLoop();
 
-  if (Achievement(165).isUnlocked && player.celestials.effarig.autoAdjustGlyphWeights) {
+  if (Achievement(165).canBeApplied && player.celestials.effarig.autoAdjustGlyphWeights) {
     autoAdjustGlyphWeights();
   }
 
@@ -1088,12 +1096,14 @@ export function init() {
     // eslint-disable-next-line no-console
     console.log("👨‍💻 Development Mode 👩‍💻");
   }
+  SetDefaults();
   GameStorage.load();
   Tabs.all.find(t => t.config.id === player.options.lastOpenTab).show(true);
 
   if (player.archipelago.isArch) Archipelago.Client.login(player.archipelago.lastURL, player.archipelago.lastName, "Antimatter Dimensions Randomizer", {
         password: player.archipelago.lastPassword
-      }).then(() => {
+      }).then((SlotData) => {
+        Archipelago.SlotData = SlotData;
         GameUI.notify.success("Automatically connected to the Archipelago server!", 5000);
       })
       .catch((er) => {

@@ -927,7 +927,7 @@ export const normalAchievements = [
   {
     id: 131,
     name: "No ethical consumption",
-    get description() { return `Get ${format(DC.D1E8)} Banked Infinities.`; },
+    get description() { return `Get ${format(DC.E8)} Banked Infinities.`; },
     checkRequirement: () => Currency.infinitiesBanked.gt(DC.D1E8),
     checkEvent: [GAME_EVENT.ETERNITY_RESET_AFTER, GAME_EVENT.SAVE_CONVERTED_FROM_PREVIOUS_VERSION],
     get reward() {
@@ -1092,7 +1092,7 @@ export const normalAchievements = [
     description: "Have all Reality upgrades bought.",
     checkRequirement: () => RealityUpgrades.allBought,
     checkEvent: GAME_EVENT.REALITY_UPGRADE_BOUGHT,
-    reward: "Unlock Teresa, the Celestial of Reality."
+    reward: "Unlock Teresa, the Celestial of Reality. (Unlocked with Locataion or Achevement)"
   },
   {
     id: 148,
@@ -1114,7 +1114,7 @@ export const normalAchievements = [
     },
     checkRequirement: () => player.galaxies >= 800 && player.requirementChecks.infinity.noAD8,
     checkEvent: GAME_EVENT.GALAXY_RESET_AFTER,
-    reward: "Unlock V, the Celestial of Achievements."
+    reward: "Unlock V, the Celestial of Achievements. (Unlocked with Locataion or Achevement)"
   },
   {
     id: 152,

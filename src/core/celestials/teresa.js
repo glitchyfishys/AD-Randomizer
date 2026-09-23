@@ -10,7 +10,7 @@ export const Teresa = {
   displayName: "Teresa",
   possessiveName: "Teresa's",
   get isUnlocked() {
-    return Achievement(147).isUnlocked;
+    return Achievement(147).isUnlocked || Achievement(147).isEffectActive;
   },
   pourRM(diff) {
     if (this.pouredAmount >= Teresa.pouredAmountCap) return;

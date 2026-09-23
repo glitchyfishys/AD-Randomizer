@@ -39,6 +39,7 @@ class AchievementState extends GameMechanicState {
   }
 
   get isEffectActive() {
+    if (player.archipelago.isArch) return Archipelago.HasAchievementReward(this.id) && !this.isDisabled;
     return this.isUnlocked && !this.isDisabled;
   }
 
