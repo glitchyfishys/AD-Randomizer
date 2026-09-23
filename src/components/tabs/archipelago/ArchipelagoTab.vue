@@ -57,8 +57,8 @@ export default {
 
 <template>
   <div style="font-size: 2rem; margin-bottom: 5rem;">
-    You have various Adjustments which increase over progression, just to balance things out. <br>
-    If you are in an Archipelago they are initially nerfed to compensate for Item buffs.<br>
+    You are have various Adjustments and increase over progression <br>
+    If you are in an Archipelago they are initially nerfed to compensate<br>
     [Progress Buffs] <br><br>
     {{formatX(buffs.AMMul,2,2)}} and {{formatPow(buffs.AD,2,2)}} Antimatter Dimensions. <br>
     {{formatPow(buffs.ID,2,2)}} Infinity Dimensions. <br>
